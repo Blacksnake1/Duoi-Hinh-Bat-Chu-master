@@ -1,0 +1,23 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        ext.kotlin_version = "1.4.20"
+        classpath 'com.android.tools.build:gradle:7.1.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+    configurations {
+        // Resolves dependency conflict caused by some dependencies use
+        // com.google.guava:guava and com.google.guava:listenablefuture together.
+        all*.exclude group: 'com.google.guava', module: 'listenablefuture'
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
